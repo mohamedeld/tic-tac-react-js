@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const Player = ({ initialName, symbol,isActive }) => {
+const Player = ({ initialName, symbol,isActive,onChangeName }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [playerName,setPlayerName] = useState(initialName);
   const handleInput = (e)=>{
@@ -8,7 +8,9 @@ const Player = ({ initialName, symbol,isActive }) => {
   }
   const handleClick = () => {
     setIsEditing(prevState => !prevState);
-    
+    if(isEditing){
+      onChangeName(symbol,playerName);
+    }
   };
   return (
     <li className={`${isActive ? 'active':''}`}>
